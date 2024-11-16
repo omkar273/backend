@@ -6,11 +6,12 @@ interface OtpInterface extends Document {
   createdAt: Date;
 }
 
-const otpSchema = new mongoose.Schema(
+const otpSchema = new mongoose.Schema<OtpInterface>(
   {
     mb_no: {
       type: String,
       required: true,
+      index: true,
     },
     otp: {
       type: String,
@@ -18,7 +19,7 @@ const otpSchema = new mongoose.Schema(
     },
     createdAt: {
       type: Date,
-      default: Date.now, 
+      default: Date.now,
       expires: 300,
     },
   },

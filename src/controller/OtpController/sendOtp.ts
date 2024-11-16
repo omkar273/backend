@@ -28,6 +28,7 @@ const sendOtp = asyncHandler(
     });
 
     await newOtpRegistration.save();
+    console.log(`send otp:${otp} for mb no ${mb_no}`);
 
     res.status(200).json(new ApiResponse({ otp }, "OTP sent successfully"));
   }

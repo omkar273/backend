@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import mongoose from "mongoose";
-import generateToken from "../../utils/jwt/generateToken.js";
+import generateTokens from "../../utils/jwt/generateToken.js";
 import User from "../../models/AuthModels/userModel.js";
 import TempUser from "../../models/AuthModels/tempUserModel.js";
 import Society from "../../models/AuthModels/societyModel.js";
@@ -50,7 +50,7 @@ const processUsers = asyncHandler(
     await assignFlat(user);
 
     const savedUser = await user.save();
-    const token = generateToken(user);
+    const token = generateTokens(user);
 
     await TempUser.findOneAndDelete({ user_id: id });
 

@@ -1,15 +1,24 @@
 import jwt from 'jsonwebtoken';
-import { Document, Types } from 'mongoose';
+import { IUser } from './../../models/AuthModels/userModel.js';
 
-// interface User extends Document {
-//   username: String;
-// }
 
-const generateToken = (user: any) => {
-  return jwt.sign(
+
+const generateAccessAndRefreshTokens = (user: IUser): {
+  accessToken: string;
+  refreshToken: string;
+} => {
+  const accessToken = jwt.sign(
     { userId: user._id },
-    process.env.JWT_SECRET
+    process.env.ACCESS_TOKEN_SECRET,
+    { expiresIn: process.env.ACCESS_TOKEN_SECRET_EXPIRY }
   );
-};
 
-export default generateToken;
+  const refreshToken = jwt.sign(
+    { userId: user._id },
+    process.env.REFRESH_TOKEN_SECRET,
+    { expiresIn: process.env.REFRESH_TOKEN_SECRET_EXPIRY }
+  );
+
+  return { accessToken, refreshToken };
+};
+export default generateAccessAndRefreshTokens;

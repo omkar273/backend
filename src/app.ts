@@ -15,6 +15,7 @@ import neighbourRoute from "./routes/NeighbourRoutes/neighbourRoutes.js";
 import announcementRoute from "./routes/AnnonucementRoutes/announcementRoutes.js";
 import complaintRoute from "./routes/ComplaintRoutes/complaintRoutes.js";
 import annualPlanRoute from "./routes/AnnualPlanRoutes/annualPlanRoutes.js";
+import pricingRouter from './routes/pricing/pricing.route.js';
 
 
 const app = express();
@@ -56,5 +57,8 @@ app.use("/api/neighbour", neighbourRoute);
 app.use("/api/announcement", announcementRoute);
 app.use("/api/complaint", complaintRoute);
 app.use("/api/annualactionplan", annualPlanRoute);
+
+// pricing route
+app.use("/api/pricing-plans", pricingRouter);
 
 export default app;

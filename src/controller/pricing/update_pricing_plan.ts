@@ -1,10 +1,10 @@
 // Update a pricing model
-import asyncHandler from './../../utils/asynchandler';
+import asyncHandler from './../../utils/asynchandler.js';
 import { Request, Response } from 'express';
-import { IPricingModel } from 'src/models/pricing/pricing.model';
-import ApiError from './../../utils/api_error';
-import PricingModel from './../../models/pricing/pricing.model';
-import ApiResponse from './../../utils/api_success';
+import { IPricingModel } from 'src/models/pricing/pricing.model.js';
+import ApiError from './../../utils/api_error.js';
+import PricingModel from './../../models/pricing/pricing.model.js';
+import ApiResponse from './../../utils/api_success.js';
 
 const updatePricingModel = asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;

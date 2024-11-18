@@ -17,6 +17,11 @@ const createPricingPlan = asyncHandler(async (req: Request, res: Response) => {
         annual_package_discount = 0,
     } = req.body as IPricingModel;
 
+    const existingPlan = await PricingModel.findOne({ name });
+    if (existingPlan) {
+        throw new ApiError("A pricing plan with this name already exists.", 400);
+    }
+
     // Validate required fields
     if (!name || !pricing_tiers.length) {
         throw new ApiError("Name and pricing tiers are required.", 400);

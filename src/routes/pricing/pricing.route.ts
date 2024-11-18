@@ -7,8 +7,8 @@ const pricingRouter = Router();
 
 pricingRouter.route('/details').get(getPricingModels)
 
-pricingRouter.route('details/:id').get(getPricingModels)
+pricingRouter.route('/details/:id').get(getPricingModels)
 
-pricingRouter.route('create').post(createPricingPlan)
+pricingRouter.route('/create').post(createPricingPlan)
 
 export default pricingRouter;

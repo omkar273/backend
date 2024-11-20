@@ -41,7 +41,7 @@ const raiseAnnouncement = asyncHandler(async (req: Request, res: Response) => {
   await newAnnouncement.save();
 
   res.status(201).json(new ApiResponse({ announcement: newAnnouncement, }, "Announcement raised successfully"));
-
+  return;
 });
 
 export default raiseAnnouncement;

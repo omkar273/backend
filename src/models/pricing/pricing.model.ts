@@ -16,6 +16,7 @@ export interface IPricingModel extends Document {
     monthly_package_discount: number;
     quarterly_package_discount: number;
     annual_package_discount: number;
+    freeTier: boolean;
 }
 
 const pricingModelSchema = new Schema<IPricingModel>({
@@ -73,6 +74,12 @@ const pricingModelSchema = new Schema<IPricingModel>({
         type: Number,
         default: 0,
     },
+    freeTier: {
+        type: Boolean,
+        default: false,
+    }
+}, {
+    timestamps: true,
 });
 
 const PricingModel = model<IPricingModel>("PricingModel", pricingModelSchema);

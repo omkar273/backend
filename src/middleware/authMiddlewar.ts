@@ -12,7 +12,11 @@ const authenticateToken = asyncHandler(
     if (token == null) {
       throw new ApiError('Auth Token Missing', 401);
     }
-    const decoded: any = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as string);
+    const decoded: any = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET as string,);
+
+    if (!decoded) {
+      throw new ApiError('Invalid Token', 401);
+    }
 
     const user = await User.findById(decoded.userId);
 

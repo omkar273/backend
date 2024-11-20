@@ -83,13 +83,12 @@ const societySchema = new mongoose.Schema(
           type: Number,
           required: true,
         },
-        status: {
-          type: String,
-          required: true,
-          default: "active",
-        },
         flatsCovered: {
           type: Number,
+        },
+        status: {
+          type: String,
+          default: "active",
         },
       }
     }

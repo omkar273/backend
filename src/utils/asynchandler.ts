@@ -20,6 +20,7 @@ const asyncHandler: AsyncHandler = (fn) => async (req, res, next) => {
                 success: false,
                 message: `Duplicate value for unique field(s): ${duplicateKey}. Please use a different value.`,
             });
+            
         } else if (error.name === 'ValidationError') {
             const missingFields = Object.keys(error.errors);
             res.status(400).json({
@@ -30,6 +31,7 @@ const asyncHandler: AsyncHandler = (fn) => async (req, res, next) => {
             res.status(error.code || 500).json({
                 message: error.message || `Internal Server Error`,
                 success: false,
+                statusCode: error.code || 500,
             });
         }
     }

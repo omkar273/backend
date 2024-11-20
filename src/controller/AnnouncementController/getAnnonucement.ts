@@ -26,9 +26,11 @@ const getAnnouncement = asyncHandler(async (req: Request, res: Response, next: N
     },
       "No announcements found"
     ));
+    return;
   }
 
   res.status(200).json(new ApiResponse({ announcements }, "Announcements fetched successfully"));
+  return;
 });
 
 export default getAnnouncement;

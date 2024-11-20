@@ -5,6 +5,7 @@ import User from "../../models/AuthModels/userModel.js";
 import asyncHandler from './../../utils/asynchandler.js';
 import ApiResponse from './../../utils/api_success.js';
 import ApiError from './../../utils/api_error.js';
+import PricingModel from './../../models/pricing/pricing.model';
 
 interface TempRegistration {
   id: string;
@@ -85,8 +86,18 @@ const processRegistration = asyncHandler(
     });
 
     const savedAdmin = await newAdmin.save();
+
+    if (!savedAdmin) {
+      throw new ApiError("Admin registration failed", 500);
+    }
+
     const admin_id = savedAdmin._id;
 
+    const freeTier = await PricingModel.findOne({ freeTier: true });
+
+    if (!freeTier) {
+      throw new ApiError("Pricing model not found", 404);
+    }
     const newSociety = new Society({
       society_name,
       society_add,
@@ -95,6 +106,14 @@ const processRegistration = asyncHandler(
       society_pincode,
       society_code,
       admin_ids: admin_id,
+      subscription: {
+        pricing_plan_id: freeTier._id,
+        start_date: new Date(),
+        end_date: (new Date()).getDate() + 90,
+        price: 0,
+        flatsCovered: 1,
+        status: "active"
+      }
     });
 
     const savedSociety = await newSociety.save();

@@ -37,8 +37,8 @@ const assignSociety = asyncHandler(
     const admin_id = society.admin_ids[0];
     const admin = await User.findOne({ _id: admin_id });
 
-    user.society_code = society_code;
-    user.flat_no = flat_no;
+    // user.society_code = society_code;
+    // user.flat_no = flat_no;
 
     const newTempUser = new TempUser({
       user_id: id,

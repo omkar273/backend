@@ -5,7 +5,7 @@ import User from "../../models/AuthModels/userModel.js";
 import asyncHandler from './../../utils/asynchandler.js';
 import ApiResponse from './../../utils/api_success.js';
 import ApiError from './../../utils/api_error.js';
-import PricingModel from './../../models/pricing/pricing.model';
+import PricingModel from './../../models/pricing/pricing.model.js';
 
 interface TempRegistration {
   id: string;

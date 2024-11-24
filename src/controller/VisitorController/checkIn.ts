@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Visitor from "../../models/VisitorManagement/tempVisitorModel.js";
 import ApiResponse from './../../utils/api_success.js';
+import asyncHandler from './../../utils/asynchandler';
 
 interface CheckinRequestBody {
   society_code: string;
@@ -14,7 +15,7 @@ interface CheckinRequestBody {
   no_of_people: string;
 }
 
-const checkIn = async (
+const checkIn = asyncHandler(async (
   req: Request<{}, {}, CheckinRequestBody>,
   res: Response
 ) => {
@@ -31,9 +32,9 @@ const checkIn = async (
     no_of_people,
   } = req.body;
 
-  if (!file) {
-    throw new Error("Please upload an image");
-  }
+  // if (!file) {
+  //   throw new Error("Please send the image of the visitor");
+  // }
 
   const tempCheckIn = new Visitor({
     society_code,
@@ -45,12 +46,12 @@ const checkIn = async (
     visitor_address,
     visitor_contact_no,
     checkin_date: Date.now(),
-    image_url: (file as any).location,
-    image_key: (file as any).key,
+    image_url: file ? (file as any).location : null,
+    image_key: file ? (file as any).key : null,
   });
 
   const tempCheckInData = await tempCheckIn.save();
   res.status(200).json(new ApiResponse({ checkIn: tempCheckInData }, "Visitor checked in successfully"));
-};
+});
 
 export default checkIn;

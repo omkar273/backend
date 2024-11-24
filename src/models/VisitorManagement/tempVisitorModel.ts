@@ -54,11 +54,9 @@ const tempVisitorSchema: Schema = new Schema(
     },
     image_url: {
       type: String,
-      required: false,
     },
     image_key: {
       type: String,
-      required: false,
     },
   },
   {

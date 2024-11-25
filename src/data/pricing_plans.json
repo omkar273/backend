@@ -1,0 +1,45 @@
+{
+    "name": "Basic Plan",
+    "description": "This is the free tier plan, offering basic features for societies.",
+    "feaures": [
+        "Basic management features",
+        "Limited support",
+        "Access to dashboards"
+    ],
+    "unavailable_features": [
+        "Priority customer support",
+        "Advanced analytics",
+        "Custom reporting"
+    ],
+    "isActive": true,
+    "pricing_tiers": [
+        {
+            "min_flats": 1,
+            "max_flats": 50,
+            "price_per_flat": 15
+        },
+        {
+            "min_flats": 51,
+            "max_flats": 100,
+            "price_per_flat": 13
+        },
+        {
+            "min_flats": 101,
+            "max_flats": 150,
+            "price_per_flat": 11
+        },
+        {
+            "min_flats": 151,
+            "max_flats": 200,
+            "price_per_flat": 9
+        },
+        {
+            "min_flats": 151,
+            "max_flats": 200,
+            "price_per_flat": 6
+        }
+    ],
+    "monthly_package_discount": 0,
+    "quarterly_package_discount": 5,
+    "annual_package_discount": 15
+}

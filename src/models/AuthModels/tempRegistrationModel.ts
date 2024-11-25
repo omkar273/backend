@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-interface TempRegistration extends Document {
+interface ITempSocietyRegistration extends Document {
   name: string;
   mb_no: string;
   email: string;
@@ -48,7 +48,10 @@ const TempRegistrationSchema: Schema = new Schema({
   },
 });
 
-export default mongoose.model<TempRegistration>(
-  "TempRegistration",
+const TempSocietyRegistration = mongoose.model<ITempSocietyRegistration>(
+  "TempSocietyRegistration",
   TempRegistrationSchema
 );
+
+
+export default TempSocietyRegistration;

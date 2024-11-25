@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 // import bcryptjs from "bcryptjs";
-import tempSociety from "../../models/AuthModels/tempRegistrationModel.js";
+import TempSocietyRegistration from "../../models/AuthModels/tempRegistrationModel.js";
 import User from "../../models/AuthModels/userModel.js";
 import asyncHandler from './../../utils/asynchandler.js';
 import ApiError from './../../utils/api_error.js';
@@ -33,14 +33,15 @@ const tempRegisterSociety = asyncHandler(
       society_pincode,
     } = req.body;
 
-    const existingUser1 = await tempSociety.findOne({ email });
+    const existingUser1 = await TempSocietyRegistration.findOne({ email });
     const existingUser2 = await User.findOne({ email });
 
     if (existingUser1 || existingUser2) {
       throw new ApiError("User already exists", 400);
     }
+    
 
-    const newTempRegistration = new tempSociety({
+    const newTempRegistration = new TempSocietyRegistration({
       name,
       mb_no,
       email,

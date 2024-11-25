@@ -18,7 +18,7 @@ const getUser = async (
     throw new ApiError("Token Missing", 401);
   }
 
-  const decoded: any = jwt.verify(token, process.env.JWT_SECRET);
+  const decoded: any = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
   const user = await User.findById(decoded.userId).select("-password");
 

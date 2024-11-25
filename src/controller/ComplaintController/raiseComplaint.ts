@@ -37,6 +37,7 @@ const raiseComplaint = asyncHandler(
       raised_by: user.name,
       society_code: user.society_code,
       photo: photoUrl,
+      raised_by_id: user._id,
     });
 
     await newComplaint.save();

@@ -1,4 +1,13 @@
-import mongoose, { Document } from "mongoose";
+import mongoose, { Document, Types } from "mongoose";
+
+export interface ISubscription {
+  pricing_plan_id: string;
+  start_date: Date;
+  end_date: Date;
+  price: number;
+  status: string;
+  flatsCovered: number;
+}
 
 interface SocietyInterface extends Document {
   society_name: string;
@@ -10,6 +19,7 @@ interface SocietyInterface extends Document {
   admin_ids: string[];
   total_flats: number;
   remaining_flats: number;
+  subscription?: ISubscription;
 }
 
 const societySchema = new mongoose.Schema(
@@ -53,6 +63,35 @@ const societySchema = new mongoose.Schema(
       required: true,
       default: 10,
     },
+    subscription: {
+      type: {
+        pricing_plan_id: {
+          type: Types.ObjectId,
+          ref: "PricingModel",
+          required: true,
+        },
+        start_date: {
+          type: Date,
+          required: true,
+          default: Date.now(),
+        },
+        end_date: {
+          type: Date,
+          required: true,
+        },
+        price: {
+          type: Number,
+          required: true,
+        },
+        flatsCovered: {
+          type: Number,
+        },
+        status: {
+          type: String,
+          default: "active",
+        },
+      }
+    }
   },
   { timestamps: true }
 );

@@ -6,7 +6,9 @@ export interface IComplaint {
   raised_by: string;
   isResolved: boolean;
   society_code: string;
+  raised_by_id: mongoose.Types.ObjectId;
   photo?: string;
+
 }
 
 const complaintSchema = new mongoose.Schema<IComplaint>(
@@ -24,16 +26,19 @@ const complaintSchema = new mongoose.Schema<IComplaint>(
       required: true,
     },
     isResolved: {
-        type: Boolean,
-        default: false,
-        required: true,
-      },
+      type: Boolean,
+      default: false,
+      required: true,
+    },
     society_code: {
       type: String,
       required: true,
     },
     photo: {
       type: String,
+    },
+    raised_by_id: {
+      type: mongoose.Schema.Types.ObjectId,
     },
   },
   { timestamps: true }

@@ -56,6 +56,7 @@ const deleteAnnouncement = asyncHandler(async (req: Request, res: Response, next
   await Announcement.findByIdAndDelete(id);
 
   res.status(200).json(new ApiResponse({}, "Announcement deleted successfully",));
+  return;
 });
 
 export default deleteAnnouncement;

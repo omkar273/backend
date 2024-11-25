@@ -18,28 +18,34 @@ const configureMaintenance = asyncHandler(
 
     if (!loggedInUserId) {
       res.status(401).json({ errorMsg: "Unauthorized user" });
+      return;
     }
 
     const user = await User.findById(loggedInUserId);
 
     if (!user) {
       res.status(404).json({ errorMsg: "User not found" });
+      return;
     }
 
     if (!societyCheck.admin_ids.includes(user._id.toString())) {
       res.status(404).json({ errorMsg: "Only admin is allow to configure the society" });
+      return;
     }
 
     if (societyCheck.society_code != user.society_code) {
       res.status(404).json({ errorMsg: "User is from another society" });
+      return;
     }
 
     if (!["monthly", "annually", "quarterly"].includes(maintenance_period)) {
       res.status(404).json({ errorMsg: "Invalid maintenance period" });
+      return;
     }
 
     if (!["flatwise", "bhkwise", "custom"].includes(maintenance_basis)) {
       res.status(404).json({ errorMsg: "Invalid maintenance collection type" });
+      return;
     }
 
     let newConfiguration;
@@ -63,6 +69,7 @@ const configureMaintenance = asyncHandler(
       msg: "Society Maintenance configured successfully",
       data: newConfiguration,
     });
+    return;
   }
 );
 

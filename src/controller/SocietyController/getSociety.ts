@@ -21,7 +21,7 @@ const getSociety = asyncHandler(
       throw new ApiError("Unauthorized user", 401);
     }
 
-    const decoded: any = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded: any = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
     const user = await User.findById(decoded.userId);
 

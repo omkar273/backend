@@ -15,8 +15,6 @@ const getUnresolvedComplaints = asyncHandler(
       throw new ApiError("User not found", 404);
     }
 
-    const society = await Society.findOne({ society_code: user.society_code });
-
     const complaints = await Complaint.find({
       society_code: user.society_code,
       isResolved: false,
@@ -24,7 +22,9 @@ const getUnresolvedComplaints = asyncHandler(
 
 
 
-    res.status(200).json(new ApiResponse({ complaints }, "Unresolved complaints fetched successfully"));
+    res.status(200).json(
+      new ApiResponse({ complaints }, "Unresolved complaints fetched successfully"),
+    );
   }
 )
 

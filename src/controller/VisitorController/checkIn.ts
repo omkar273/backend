@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import Visitor from "../../models/VisitorManagement/tempVisitorModel.js";
 import ApiResponse from './../../utils/api_success.js';
-import asyncHandler from './../../utils/asynchandler';
+import asyncHandler from './../../utils/asynchandler.js';
 
 interface CheckinRequestBody {
   society_code: string;

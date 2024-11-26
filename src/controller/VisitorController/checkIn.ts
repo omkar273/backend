@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import Visitor from "../../models/VisitorManagement/tempVisitorModel.js";
 import ApiResponse from './../../utils/api_success.js';
 import asyncHandler from './../../utils/asynchandler.js';
+import ApiError from './../../utils/api_error.js';
 
 interface CheckinRequestBody {
   society_code: string;
@@ -19,7 +20,14 @@ const checkIn = asyncHandler(async (
   req: Request<{}, {}, CheckinRequestBody>,
   res: Response
 ) => {
+
+  const missingValues = handleMissingFields(req.body, ["society_code", "visitor_name", "visitor_contact_no", "visiting_to", "visit_purpose", "visitor_address", "flat_no", "no_of_people"],);
+
   const file = req.file;
+
+  if (missingValues.length) {
+    throw new ApiError(`Missing fields: ${missingValues.join(", ")}`);
+  }
 
   const {
     society_code,

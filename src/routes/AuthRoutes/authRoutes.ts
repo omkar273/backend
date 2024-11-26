@@ -5,7 +5,7 @@ import tempRegisterSociety from "../../controller/AuthController/tempRegisterSoc
 import { listPendingRegistrations, processRegistration } from "../../controller/AuthController/pendingSocietyRequest.js";
 import userLogin from "../../controller/AuthController/userLogin.js";
 import userRegister from "../../controller/AuthController/userRegister.js";
-import { pendingUsers, processUsers } from "../../controller/AuthController/pendingUserRequest.js";
+import { getPendingUsers, processUsers } from "../../controller/AuthController/pendingUserRequest.js";
 import assignSociety from "../../controller/AuthController/societyAssign.js";
 
 import authMiddleware from '../../middleware/authMiddlewar.js';
@@ -20,7 +20,7 @@ router.post("/registerSociety/process", processRegistration);
 router.post("/login", userLogin);
 router.post("/userRegister", userRegister);
 router.post("/assignSociety", assignSociety);
-router.get("/userRegister/pending/:society_code", authMiddleware, pendingUsers);
+router.get("/userRegister/pending/:society_code", authMiddleware, getPendingUsers);
 router.post("/userRegister/process", authMiddleware, processUsers);
 
 export default router;

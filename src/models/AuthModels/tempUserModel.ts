@@ -4,6 +4,7 @@ interface tempUserInterface extends Document {
   user_id: string;
   floor_no: string;
   flat_type: string;
+  society_code: string;
 }
 
 const tempUserSchema = new mongoose.Schema(
@@ -18,6 +19,9 @@ const tempUserSchema = new mongoose.Schema(
     flat_type: {
       type: String,
     },
+    society_code: {
+      type: String,
+    }
   },
   { timestamps: true }
 );

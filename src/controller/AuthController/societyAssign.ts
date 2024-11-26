@@ -44,6 +44,7 @@ const assignSociety = asyncHandler(
       user_id: id,
       flat_type,
       floor_no,
+      society_code,
     });
 
     await newTempUser.save();

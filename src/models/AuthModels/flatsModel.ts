@@ -25,6 +25,10 @@ const flatSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  owner_id: {
+    type: String,
+    required: true
+  },
   residents: {
     type: [String],
     required: true,

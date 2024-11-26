@@ -5,8 +5,8 @@ import TempUser from "../../models/AuthModels/tempUserModel.js";
 
 const assignFlat = async (user: any) => {
   try {
-    const society = await Society.findOne({ society_code: user.society_code });
     const tempUser = await TempUser.findOne({ user_id: user._id });
+    const society = await Society.findOne({ society_code: tempUser.society_code });
 
     if (!society) {
       throw new Error("Society not found");
@@ -17,8 +17,8 @@ const assignFlat = async (user: any) => {
     }
 
     const existingFlat = await Flat.findOne({
-      society_code: user.society_code,
-      flat_no: user.flat_no,
+      society_code: tempUser.society_code,
+      flat_no: 0,
     });
 
     if (existingFlat) {
@@ -26,10 +26,11 @@ const assignFlat = async (user: any) => {
     }
 
     const newFlat = new Flat({
-      flat_no: user.flat_no,
-      society_code: user.society_code,
+      flat_no: 0,
+      society_code: tempUser.society_code,
       flat_type: tempUser.flat_type,
       floor_no: tempUser.floor_no,
+      owner_id: user._id,
       residents: [user.name],
     });
 
@@ -42,7 +43,7 @@ const assignFlat = async (user: any) => {
 
     await user.save();
 
-    return true;
+    return user;
   } catch (error) {
     console.error("Error assigning flat:");
     throw new Error(error.message);

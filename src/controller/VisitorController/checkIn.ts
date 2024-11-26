@@ -3,6 +3,7 @@ import Visitor from "../../models/VisitorManagement/tempVisitorModel.js";
 import ApiResponse from './../../utils/api_success.js';
 import asyncHandler from './../../utils/asynchandler.js';
 import ApiError from './../../utils/api_error.js';
+import handleMissingFields from './../../utils/handle_missing_values.js';
 
 interface CheckinRequestBody {
   society_code: string;
@@ -12,7 +13,7 @@ interface CheckinRequestBody {
   visit_purpose: string;
   visitor_add: string;
   visitor_address: string;
-  flat_no: string;
+  flat_id: string;
   no_of_people: string;
 }
 
@@ -21,7 +22,7 @@ const checkIn = asyncHandler(async (
   res: Response
 ) => {
 
-  const missingValues = handleMissingFields(req.body, ["society_code", "visitor_name", "visitor_contact_no", "visiting_to", "visit_purpose", "visitor_address", "flat_no", "no_of_people"],);
+  const missingValues = handleMissingFields(req.body, ["society_code", "visitor_name", "visitor_contact_no", "visiting_to", "visit_purpose", "visitor_address", "flat_id", "no_of_people"],);
 
   const file = req.file;
 
@@ -36,7 +37,7 @@ const checkIn = asyncHandler(async (
     visiting_to,
     visit_purpose,
     visitor_address,
-    flat_no,
+    flat_id,
     no_of_people,
   } = req.body;
 
@@ -49,7 +50,7 @@ const checkIn = asyncHandler(async (
     visit_purpose,
     visiting_to,
     visitor_name,
-    flat_no,
+    flat_id,
     no_of_people,
     visitor_address,
     visitor_contact_no,

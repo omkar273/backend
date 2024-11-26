@@ -7,12 +7,13 @@ interface tempVisitor extends Document {
   visiting_to: string;
   visit_purpose: string;
   visitor_address: string;
-  flat_no: string;
+  flat_id: string;
   no_of_people: string;
   checkin_date: Date;
   image_url?: string;
   image_key?: string;
 }
+
 
 const tempVisitorSchema: Schema = new Schema(
   {
@@ -36,10 +37,7 @@ const tempVisitorSchema: Schema = new Schema(
       type: String,
       required: true,
     },
-    flat_no: {
-      type: String,
-      required: true,
-    },
+
     no_of_people: {
       type: String,
       required: true,

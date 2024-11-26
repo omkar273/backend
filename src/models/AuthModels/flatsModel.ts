@@ -5,6 +5,7 @@ interface FlatInterface extends Document {
   flat_type: string;
   floor_no: string;
   society_code: string;
+  owner_id: string;
   residents: string[];
 }
 

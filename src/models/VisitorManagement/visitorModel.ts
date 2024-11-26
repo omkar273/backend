@@ -37,8 +37,8 @@ const VisitorSchema: Schema = new Schema(
       type: String,
       required: true,
     },
-    flat_no: {
-      type: String,
+    flat_id: {
+      type: mongoose.Types.ObjectId,
       required: true,
     },
     no_of_people: {
@@ -55,11 +55,9 @@ const VisitorSchema: Schema = new Schema(
     },
     image_url: {
       type: String,
-      required: false,
     },
     image_key: {
       type: String,
-      required: false,
     },
   },
   {

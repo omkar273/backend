@@ -16,3 +16,5 @@ function handleMissingFields(obj: Record<string, any>, keys: string[]): string[]
 
     return missingFields;
 }
+
+export default handleMissingFields;
